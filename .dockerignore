@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.sqlite3
+*.db
+
+# Virtual environments
+venv/
+.venv/
+
+# Environment files
+.env
+.env.*
+
+# Git
+.git/
+.gitignore
+
+# Caches
+.cache/
+.huggingface/
+hf_cache/
+
+# Node (if frontend exists)
+node_modules/
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
