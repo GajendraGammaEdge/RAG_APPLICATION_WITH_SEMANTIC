@@ -44,6 +44,7 @@ secure-smtplib = "^0.1.1"
 fastapi-mail = "^1.6.2"
 debugpy = "^1.8.20"
 pageindex = "^0.2.5.1"
+alembic = "^1.18.4"
 
 [[tool.poetry.source]]
 name = "pytorch-cpu"

@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from schema.subscription_transaction import SubscriptionTransaction
+from schema.subscription_request import SubscriptionTransaction
 
 
 class SubscriptionTransactionService:

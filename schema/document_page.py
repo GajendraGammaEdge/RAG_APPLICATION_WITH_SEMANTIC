@@ -1,4 +1,4 @@
-from sqlalchemy import  Column , Integer , ForeignKey , Text
+from sqlalchemy import  Column , Integer , ForeignKey , Text , DateTime
 from datetime import datetime
 from db_configuration.pgdb_config import  Base
 
@@ -15,4 +15,4 @@ class DocumentPages(Base):
     page_number = Column(Integer, nullable=False)
     content = Column(Text, nullable=False)
 
-    created_at = Column(datetime, default=datetime.now)
+    created_at = Column(DateTime, default=datetime.now)

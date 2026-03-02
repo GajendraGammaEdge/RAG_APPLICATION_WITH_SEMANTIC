@@ -5,7 +5,11 @@ from router.document_router import router as documentrouter
 from router.search_router import router as searchrouter
 from router.userrouter import router as userorotuer
 from router.otp_router import router as otprouter
+from router.subscription_router import router as subscriptionrouter
+from router.subscription_transaction_router import router as   subscritpiontransactionrouter
+from router.conversation_router import router as coverstationrouter
 from sqlalchemy import text
+from pathlib import Path
 import os 
 from dotenv import load_dotenv
 load_dotenv()
@@ -26,16 +30,26 @@ app.include_router(chatrouter, tags=["Chat"])
 app.include_router(documentrouter, tags=["Document"])
 app.include_router(searchrouter, tags=["Search"])
 app.include_router(userorotuer)
+app.include_router(subscriptionrouter)
+app.include_router(subscritpiontransactionrouter)
+app.include_router(coverstationrouter)
 
-
-# Create the vector extension on startup
+# Execute SQL initialization on startup using init.sql file
+init_sql_path = Path(__file__).parent / "db_configuration" / "init.sql"
 with engine.connect() as connection:
-    connection.execute(text("CREATE EXTENSION IF NOT EXISTS vector;"))
-    # connection.execute(text("ALTER DATABASE {db_name} REFRESH COLLATION VERSION;"))
+    # Read and execute init.sql file
+    if init_sql_path.exists():
+        init_sql = init_sql_path.read_text()
+        if init_sql:
+            connection.execute(text(init_sql))
+            print("Init SQL executed: vector extension created")
+    else:
+        print(f"Warning: init.sql not found at {init_sql_path}")
+    
     connection.commit()
-    print("Extension of the pgvector is completed") 
+    print("Database initialization completed")
 
-Base.metadata.create_all(bind=engine)
+# Base.metadata.create_all(bind=engine)  # Removed - Let Alembic handle schema
 
 @app.post("/healthcheck")
 async def health():
