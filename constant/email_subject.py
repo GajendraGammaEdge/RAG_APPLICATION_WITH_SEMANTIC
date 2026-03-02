@@ -1,0 +1,1 @@
+FORGOT_PASSWORD = "Reset  th Password mail by GammaRag"

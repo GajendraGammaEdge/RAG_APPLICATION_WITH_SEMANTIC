@@ -1,7 +1,7 @@
 from schema.user_detailed import UserDetails
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
-from model.user_info import Signup, Login
+from model.user_info import Signup, Login 
 from encryption_and_jwt.pass_hashing import (
      get_hashed_password,
      verify_password,
@@ -10,7 +10,6 @@ from utils.helper import calculate_age
 from encryption_and_jwt.jwt_handler import create_access_token
 from sqlalchemy import or_
 from utils.db_calling import get_user_by_id
-
 
 class UserServices():
     def __init__(self, db: Session):
@@ -97,3 +96,5 @@ class UserServices():
             "age": user.age,
             "profession": user.profession
         }
+    
+

@@ -20,44 +20,35 @@ class MessageRole(enum.Enum):
 class ChatMessage(Base):
     __tablename__ = "chat_message"
 
-    message_id = Column(
-        Integer,
-        primary_key=True,
-        autoincrement=True,
-    )
+    message_id = Column(Integer, primary_key=True, autoincrement=True)
+
     user_id = Column(
         Integer,
-        ForeignKey(
-            "user_detailes.id",
-            ondelete="CASCADE",
-        ),
+        ForeignKey("user_detailes.id", ondelete="CASCADE"),
         nullable=False,
     )
+
     session_id = Column(
         Integer,
-        ForeignKey(
-            "chat_session.session_id",
-            ondelete="CASCADE",
-        ),
+        ForeignKey("chat_session.session_id", ondelete="CASCADE"),
         nullable=False,
     )
-    role = Column(
-        Enum(MessageRole),
-        nullable=False,
-    )
+
+    role = Column(Enum(MessageRole), nullable=False)
+
     user_query = Column(Text)
     semantic_context = Column(Text)
+
     ai_response = Column(Text)
 
-    created_at = Column(
-        DateTime,
-        default=datetime.now,
+    rag_mode = Column(
+        Enum("VECTOR", "PAGE_INDEX", "HYBRID", name="rag_mode_enum"),
+        nullable=False,
+        default="VECTOR"
     )
-    user = relationship(
-        "UserDetails",
-        back_populates="chat_messages",
-    )
-    session = relationship(
-        "ChatSession",
-        back_populates="messages",
-    )
+    page_references = Column(Text)
+
+    created_at = Column(DateTime, default=datetime.now)
+
+    user = relationship("UserDetails", back_populates="chat_messages")
+    session = relationship("ChatSession", back_populates="messages")

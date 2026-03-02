@@ -23,18 +23,15 @@ async def upload_document(
     background_task: BackgroundTasks,
     file: UploadFile = File(...),
     current_user: UserDetails = Depends(get_current_user),
-): 
-    if len(file) > MAX_NUMBER_OF_DOCUMENT:
-         raise HTTPException(
-              status_code=401,
-              detail= f"You can only upload {MAX_NUMBER_OF_DOCUMENT} in once.Try remove few document"
-         ) 
+):
     file_bytes = await file.read()
-    if len(file_bytes) > MAX_SIZE :
-         raise HTTPException(
-              status_code=413,
-              detail= f"You need to upload the document less then {MAX_SIZE}"
-         )
+
+    if len(file_bytes) > MAX_SIZE:
+        raise HTTPException(
+            status_code=413,
+            detail=f"File size must be less than {MAX_SIZE} bytes"
+        )
+
     service = DocumentService()
 
     background_task.add_task(
@@ -44,5 +41,6 @@ async def upload_document(
         file.filename,
         file.content_type
     )
-
-    return "Document uploaded successfully"
+    return {
+        "message": "Document uploaded and processing started"
+    }

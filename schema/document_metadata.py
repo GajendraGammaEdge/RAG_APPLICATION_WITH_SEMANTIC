@@ -9,7 +9,7 @@ from sqlalchemy import (
 from db_configuration.pgdb_config import Base
 from datetime import datetime
 from sqlalchemy.orm import relationship
-
+from schema.document_page import DocumentPages
 
 class DocumentMetadata(Base):
     __tablename__ = "document_metadata"
@@ -28,4 +28,8 @@ class DocumentMetadata(Base):
         "DocumentChunks",
         back_populates="document",
         cascade="all, delete-orphan"
+    )
+    pages = relationship(
+    "DocumentPages",
+    cascade="all, delete-orphan"
     )

@@ -40,6 +40,10 @@ langsmith = ">=0.7.1,<0.8.0"
 torch = { version = "^2.2.0", source = "pytorch-cpu" }
 pep8 = "^1.7.1"
 pycodestyle = "^2.14.0"
+secure-smtplib = "^0.1.1"
+fastapi-mail = "^1.6.2"
+debugpy = "^1.8.20"
+pageindex = "^0.2.5.1"
 
 [[tool.poetry.source]]
 name = "pytorch-cpu"

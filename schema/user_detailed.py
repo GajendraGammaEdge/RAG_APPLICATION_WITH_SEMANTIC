@@ -41,3 +41,8 @@ class UserDetails(Base):
         back_populates="user",
         cascade="all, delete-orphan"
     )
+    subscription_own = Column(
+    Enum(SubscriptionEnum, name="subscription_level"),
+    default=SubscriptionEnum.FREE,
+    nullable=False
+    )

@@ -14,3 +14,15 @@ class Signup(BaseModel):
 class Login(BaseModel):
     user_name: str 
     password : str     
+
+class ForgotPwd(BaseModel):
+    user_email: EmailStr
+
+class Otpverification(BaseModel):
+     user_email :EmailStr
+     otp: str 
+     password : str 
+     enter_password: str
+
+class ResendOtp(ForgotPwd):
+    otp:str 

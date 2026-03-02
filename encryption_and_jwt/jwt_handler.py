@@ -6,7 +6,7 @@ import os
 load_dotenv()
 
 Algorithm = os.getenv("ALGORITHM")
-Token_expire_time = int(os.getenv("ACCESS_TOKEN_EXPIRE_TIME", 30))  # default 30 minutes
+Token_expire_time = int(os.getenv("ACCESS_TOKEN_EXPIRE_TIME", 30))  
 
 with open("key/private_key.pem", "rb") as f:
     PRIVATE_KEY = f.read()

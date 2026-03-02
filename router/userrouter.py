@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from db_configuration.pgdb_config import get_db
-from model.user_info import Signup, Login
+from model.user_info import Signup, Login , ForgotPwd , Otpverification
 from service.user_service import UserServices
 from sqlalchemy.orm import Session
 
@@ -17,3 +17,5 @@ async def signup(user: Signup, db: Session = Depends(get_db)):
 async def login(login_data: Login, db: Session = Depends(get_db)):
     service = UserServices(db)
     return await service.login(login_data)
+
+

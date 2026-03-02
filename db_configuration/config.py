@@ -30,6 +30,14 @@ class Settings(BaseSettings):
     nomic_embedding_model: Optional[str] = None
     gemma_embedding_model: Optional[str] = None
 
+    
+    smtp_sender :Optional[str] = None
+    smtp_password : Optional[str] = None
+    smtp_server : Optional[str] = None
+    smtp_port : Optional[int] = 587
+
+    otp_expiration_time: Optional[int] = 10
+
     class Config:
         env_file = Path(".env")
         case_sensitive = False
